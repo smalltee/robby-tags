@@ -6,7 +6,7 @@
 				<text v-if="isShowDelIcon" class="tagDelIcon" @tap="delTag" :data-text="tagText">x</text>
 			</view>
 		</view>
-		<view class="tagInput">
+		<view class="tagInput" v-if="isShowAdd">
 			<input type="text" v-model="tagString" placeholder="输入新的标签,逗号间隔" />
 			<button type="default" size="mini" @tap="createTags">添加</button>
 		</view>
@@ -16,12 +16,13 @@
 <script>
 	export default {
 		name:'robby-tags',
-		props: ['enableDel','bgColorType','tagData'],
+		props: ['enableDel','bgColorType','tagData', 'enableAdd'],
 		data() {
 			return {
 				tagString:'',
 				tagList: this.tagData || [],
-				isShowDelIcon: this.enableDel || false
+				isShowDelIcon: this.enableDel || false,
+				isShowAdd: this.enableAdd || false
 			}
 		},
 		computed:{
