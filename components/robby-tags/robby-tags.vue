@@ -44,23 +44,32 @@
 		},
 		methods: {
 			createTags: function(){
+				let tempTagArr = []
 				if(this.tagString.length>0){
 					let newTagList = this.tagString.split(/,|，/)
 					for(let i=0;i<newTagList.length;i++){
 						let newTag = newTagList[i].trim()
 						
-						if(newTag !== '' && this.tagList.indexOf(newTag)<=0){
-							this.tagList.push(newTag)
+						if(newTag !== '' && this.tagList.indexOf(newTag) < 0){
+							tempTagArr.push(newTag)
 						}
 					}
 				}
 				this.tagString = ''
+				this.tagList.splice(this.tagList.length,0, ...tempTagArr)
+				this.$emit('add', {
+					currentTag: tempTagArr,
+					allTags: this.tagList
+				})
 			}, 
 			delTag: function(e){
 				let delTagText = e.currentTarget.dataset.text
 				let delTagIndex = this.tagList.indexOf(delTagText)
 				this.tagList.splice(delTagIndex,1)
-				this.$emit("delete", delTagText)
+				this.$emit("delete", {
+					currentTag: delTagText,
+					allTags: this.tagList
+				})
 			},
 			tapTag: function(e){
 				let selTagText = e.currentTarget.dataset.text
@@ -86,7 +95,8 @@
 		color: white;
 	}
 	.tagBgDefault{
-		background-color: #b0b0b0;
+		background-color: #cfcfcf;
+		color: black;
 	}
 	.tagBgPrimary{
 		background-color: #007aff;

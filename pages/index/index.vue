@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<robby-tags :tag-data="tabData" :bg-color-type="colorType" :enable-del="showDel" :enable-add="showAdd"></robby-tags>
+		<robby-tags @add="addTag" :tag-data="tabData" :bg-color-type="colorType" :enable-del="showDel" :enable-add="showAdd"></robby-tags>
 	</view>
 </template>
 
@@ -13,7 +13,7 @@
 			return {
 				tabData:['物理','数学'],
 				showDel: true ,
-				showAdd: false,
+				showAdd: true,
 				colorType: 'error'
 			}
 		},
@@ -22,6 +22,9 @@
 				console.log(e)
 			},
 			deleteTag: function(e){
+				console.log(e)
+			},
+			addTag: function(e){
 				console.log(e)
 			}
 		}
