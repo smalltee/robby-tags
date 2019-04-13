@@ -33,7 +33,7 @@ export default {
 
 # 属性说明
 属性名|类型|默认值|说明
----|:--:|:--:|---:
+:-:|:-:|:-:|-
 enable-del|Boolean|false|删除图标是否可见，即是否可删除
 enable-add|Boolean|false|添加标签操作是否可见，即是否可进行添加标签
 tag-data|Array<String>|[]|初始化的标签数据
@@ -41,7 +41,7 @@ bg-color-type|String|''|标签的背景颜色，默认为灰色，另外可取�
 
 # 事件说明
 事件名称|说明|返回参数
----|:--:|---:
+:-:|-|-
 add|点击”添加“按钮后触发的事件,返回参数为当前操作添加的标签数组和当前所有的标签数组|{currentTag:Array<String>,allTags:<String>}
 delete|点击“x”删除图标后触发的事件,返回参数为当前删除的标签字符串|{currentTag:String,allTags:<String>}
 click|点击标签文字触发的事件，返回参数为当前点击的标签字符串|String
