@@ -53,7 +53,7 @@ click|点击标签文字触发的事件，返回参数为当前点击的标签�
 		<view class="uni-label">
 			为作品贴标签
 		</view>
-		<robby-tags @add="addTag" @delete="delTag" :tag-data="tagList" :enable-del="enableDel" :enable-add="enableAdd"></robby-tags>
+		<robby-tags @add="addTag" @delete="delTag" @click="clickTag" :tag-data="tagList" :enable-del="enableDel" :enable-add="enableAdd"></robby-tags>
 	</view>
 </template>
 <script>
@@ -65,6 +65,17 @@ click|点击标签文字触发的事件，返回参数为当前点击的标签�
 				enableAdd: true,
 				colorType: 'primary',
 				tagList: ['建筑','动漫','艺术']
+			}
+		},
+		methods:{
+			clickTag: function(e){
+				console.log(e)
+			},
+			delTag: function(e){
+				console.log(e)
+			},
+			addTag: function(e){
+				console.log(e)
 			}
 		}
 	}

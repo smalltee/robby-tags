@@ -1,5 +1,8 @@
 <template>
 	<view>
+		<view class="uni-label">
+			带删除，带添加，primary背景色
+		</view>
 		<robby-tags @add="addTag" :tag-data="tabData" :bg-color-type="colorType" :enable-del="showDel" :enable-add="showAdd"></robby-tags>
 	</view>
 </template>
@@ -11,10 +14,10 @@
 		components:{robbyTags},
 		data() {
 			return {
-				tabData:['物理','数学'],
+				tabData:['建筑','动漫','艺术'],
 				showDel: true ,
 				showAdd: true,
-				colorType: 'error'
+				colorType: 'primary',
 			}
 		},
 		methods:{
