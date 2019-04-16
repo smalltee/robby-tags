@@ -1,33 +1,25 @@
 <template>
-	<view>
-		<view class="uni-label">
-			带删除，带添加，primary背景色
-		</view>
-		<robby-tags @add="addTag" :tag-data="tabData" :bg-color-type="colorType" :enable-del="showDel" :enable-add="showAdd"></robby-tags>
+	<view class="">
+		<robby-image-upload :image-data="imageData" @delete="deleteImage" @add="addImage"></robby-image-upload>
 	</view>
 </template>
 
 <script>
-	import robbyTags from '@/components/robby-tags/robby-tags.vue'
-	
+	import robbyImageUpload from '@/components/robby-image-upload/robby-image-upload.vue'
 	export default {
-		components:{robbyTags},
 		data() {
 			return {
-				tabData:['建筑','动漫','艺术'],
-				showDel: true ,
-				showAdd: true,
-				colorType: 'primary',
-			}
+				enableDel : false,
+				enableAdd : false,
+				imageData : ['http://e0.ifengimg.com/11/2019/0416/C84611AFCFFA54F880452B866733AF65E7E65899_size80_w1280_h960.jpeg', 'http://e0.ifengimg.com/09/2019/0416/3F9235CCC4A216818ED26B23CA2F9DD3D2FE7566_size718_w750_h400.jpeg']
+			} 
 		},
+		components: {robbyImageUpload},
 		methods:{
-			clickTag: function(e){
+			deleteImage: function(e){
 				console.log(e)
 			},
-			deleteTag: function(e){
-				console.log(e)
-			},
-			addTag: function(e){
+			addImage: function(e){
 				console.log(e)
 			}
 		}
@@ -35,5 +27,4 @@
 </script>
 
 <style>
-	
 </style>
