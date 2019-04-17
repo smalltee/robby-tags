@@ -2,8 +2,11 @@
 	<view>
 		<view class="uni-label">
 			带删除，带添加，primary背景色
+		</view> 
+		<robby-tags v-model="tabData" :bg-color-type="colorType" :enable-del="showDel" :enable-add="showAdd"></robby-tags>
+		<view :key="index" v-for="(tag,index) in tabData">
+			{{index}}. {{tag}}
 		</view>
-		<robby-tags @add="addTag" :tag-data="tabData" :bg-color-type="colorType" :enable-del="showDel" :enable-add="showAdd"></robby-tags>
 	</view>
 </template>
 

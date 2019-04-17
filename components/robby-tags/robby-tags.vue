@@ -16,11 +16,11 @@
 <script>
 	export default {
 		name:'robby-tags',
-		props: ['enableDel','bgColorType','tagData', 'enableAdd'],
+		props: ['enableDel','bgColorType','value', 'enableAdd'],
 		data() {
 			return {
 				tagString:'',
-				tagList: this.tagData || [],
+				tagList: this.value || [],
 				isShowDelIcon: this.enableDel || false,
 				isShowAdd: this.enableAdd || false
 			}
@@ -61,6 +61,7 @@
 					currentTag: tempTagArr,
 					allTags: this.tagList
 				})
+				this.$emit('input', this.tagList)
 			}, 
 			delTag: function(e){
 				let delTagText = e.currentTarget.dataset.text
@@ -70,6 +71,7 @@
 					currentTag: delTagText,
 					allTags: this.tagList
 				})
+				this.$emit('input', this.tagList)
 			},
 			tapTag: function(e){
 				let selTagText = e.currentTarget.dataset.text

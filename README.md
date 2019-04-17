@@ -28,15 +28,17 @@ export default {
 在 `template` 中使用组件：
 ```
 <robby-tags></robby-tags>
-<robby-tags @add="addTag" @delete="delTag" :tag-data="tagData" :enable-del="enableDel" :enable-add="enableAdd"></robby-tags>
+<robby-tags v-model="tagList" @add="addTag" @delete="delTag" :enable-del="enableDel" :enable-add="enableAdd"></robby-tags>
 ```
+
+#双向绑定说明
+v-model: 类型为字符串数组。 即标签数组，可用于初始化，当添加/删除操作时，绑定的数据都会同步更新
 
 # 属性说明
 属性名|类型|默认值|说明
 :-:|:-:|:-:|-
 enable-del|Boolean|false|删除图标是否可见，即是否可删除
 enable-add|Boolean|false|添加标签操作是否可见，即是否可进行添加标签
-tag-data|Array<String>|[]|初始化的标签数据
 bg-color-type|String|''|标签的背景颜色，默认为灰色，另外可取值有四种，与uni自带的颜色保持一致，分别为：primary, success, warn, error
 
 # 事件说明
@@ -53,7 +55,10 @@ click|点击标签文字触发的事件，返回参数为当前点击的标签�
 		<view class="uni-label">
 			为作品贴标签
 		</view>
-		<robby-tags @add="addTag" @delete="delTag" @click="clickTag" :tag-data="tagList" :enable-del="enableDel" :enable-add="enableAdd"></robby-tags>
+		<robby-tags v-model="tagList" @add="addTag" @delete="delTag" @click="clickTag" :enable-del="enableDel" :enable-add="enableAdd"></robby-tags>
+		<view :key="index" v-for="(tag,index) in tagList">
+			{{index}}. {{tag}}
+		</view>
 	</view>
 </template>
 <script>
