@@ -18,7 +18,7 @@
 版本号|更新日期|更新说明
 :-:|:-:|-
 v1.0|2019-4-14|功能参考上面“组件功能说明”
-v1.1|2019-4-17|1.增加v-model支持 2.移除tagData属性
+v1.1|2019-4-17|1.移除tagData属性 2.增加v-model支持 3.增加value属性
 
 # 使用说明
 拷贝该组件到components目录下之后
@@ -33,7 +33,7 @@ export default {
 
 在 `template` 中使用组件：
 ```
-<robby-tags></robby-tags>
+<robby-tags :value="tagList"></robby-tags>
 <robby-tags v-model="tagList" @add="addTag" @delete="delTag" :enable-del="enableDel" :enable-add="enableAdd"></robby-tags>
 ```
 
@@ -46,6 +46,7 @@ v-model: 类型为字符串数组。 即标签数组，可用于初始化，当�
 enable-del|Boolean|false|删除图标是否可见，即是否可删除
 enable-add|Boolean|false|添加标签操作是否可见，即是否可进行添加标签
 bg-color-type|String|''|标签的背景颜色，默认为灰色，另外可取值有四种，与uni自带的颜色保持一致，分别为：primary, success, warn, error
+value|Array&lt;String&gt;|[]|初始化标签数据，可用于单向数据初始化，需要双向绑定可直接用v-model
 
 # 事件说明
 事件名称|说明|返回参数
