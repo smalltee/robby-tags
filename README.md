@@ -31,7 +31,7 @@ export default {
 <robby-tags v-model="tagList" @add="addTag" @delete="delTag" :enable-del="enableDel" :enable-add="enableAdd"></robby-tags>
 ```
 
-#双向绑定说明
+# 双向绑定说明
 v-model: 类型为字符串数组。 即标签数组，可用于初始化，当添加/删除操作时，绑定的数据都会同步更新
 
 # 属性说明
