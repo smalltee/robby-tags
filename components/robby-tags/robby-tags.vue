@@ -1,13 +1,13 @@
 <template>
 	<view class="tagController">
 		<view class="tagContainer">
-			<view class="tagItem" :class="tagBgColor" v-bind:key="index" v-for="(tagText,index) in tagList">
+			<view class="tagItem" :class="tagBgColor" v-bind:key="index" v-for="(tagText,index) in value">
 				<text @tap="tapTag" :data-text="tagText">{{tagText}}</text>
 				<text v-if="isShowDelIcon" class="tagDelIcon" @tap="delTag" :data-text="tagText">x</text>
 			</view>
 		</view>
 		<view class="tagInput" v-if="isShowAdd">
-			<input type="text" v-model="tagString" placeholder="输入新的标签,逗号间隔" />
+			<input type="text" v-model="tagString" placeholder="输入新的标签,多个标签用逗号间隔" />
 			<button type="default" size="mini" @tap="createTags">添加</button>
 		</view>
 	</view>
@@ -20,7 +20,6 @@
 		data() {
 			return {
 				tagString:'',
-				tagList: this.value || [],
 				isShowDelIcon: this.enableDel || false,
 				isShowAdd: this.enableAdd || false
 			}
@@ -46,32 +45,32 @@
 			createTags: function(){
 				let tempTagArr = []
 				if(this.tagString.length>0){
-					let newTagList = this.tagString.split(/,|，/)
-					for(let i=0;i<newTagList.length;i++){
-						let newTag = newTagList[i].trim()
+					let newvalue = this.tagString.split(/,|，/)
+					for(let i=0;i<newvalue.length;i++){
+						let newTag = newvalue[i].trim()
 						
-						if(newTag !== '' && this.tagList.indexOf(newTag) < 0){
+						if(newTag !== '' && this.value.indexOf(newTag) < 0){
 							tempTagArr.push(newTag)
 						}
 					}
 				}
 				this.tagString = ''
-				this.tagList.splice(this.tagList.length,0, ...tempTagArr)
+				this.value.splice(this.value.length,0, ...tempTagArr)
 				this.$emit('add', {
 					currentTag: tempTagArr,
-					allTags: this.tagList
+					allTags: this.value
 				})
-				this.$emit('input', this.tagList)
+				this.$emit('input', this.value)
 			}, 
 			delTag: function(e){
 				let delTagText = e.currentTarget.dataset.text
-				let delTagIndex = this.tagList.indexOf(delTagText)
-				this.tagList.splice(delTagIndex,1)
+				let delTagIndex = this.value.indexOf(delTagText)
+				this.value.splice(delTagIndex,1)
 				this.$emit("delete", {
 					currentTag: delTagText,
-					allTags: this.tagList
+					allTags: this.value
 				})
-				this.$emit('input', this.tagList)
+				this.$emit('input', this.value)
 			},
 			tapTag: function(e){
 				let selTagText = e.currentTarget.dataset.text
